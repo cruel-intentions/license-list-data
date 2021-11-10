@@ -19,23 +19,11 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - uses: actions/upload-artifact@v2
+      - run: tar -czvf text.tar.gz text
+      - run: tar -czvf json.tar.gz json
+      - run: tar -czvf jsonld.tar.gz jsonld
+      - run: tar -czvf template.tar.gz template
+      - uses: ncipollo/release-action@v1
         with:
-          name: spdx-html
-          path: html/
-      - uses: actions/upload-artifact@v2
-        with:
-          name: spdx-json
-          path: json/
-      - uses: actions/upload-artifact@v2
-        with:
-          name: spdx-jsonld
-          path: jsonld/
-      - uses: actions/upload-artifact@v2
-        with:
-          name: spdx-template
-          path: template/
-      - uses: actions/upload-artifact@v2
-        with:
-          name: spdx-text
-          path: text/
+          artifacts: "*.tar.tz"
+          token: ${{ secrets.GITHUB_TOKEN }}
