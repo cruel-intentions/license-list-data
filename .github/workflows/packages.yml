@@ -28,6 +28,6 @@ jobs:
       - run: tar -czvf template.tar.gz template
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: "*.tar.tz"
+          artifacts: "text.tar.gz,json.tar.gz,jsonld.tar.gz,template.tar.gz"
           tag: ${{ github.event.inputs.tag }}
           token: ${{ secrets.GITHUB_TOKEN }}
